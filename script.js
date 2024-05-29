@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="pokemon-card">
                 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
                 <h3>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h3>
-                <p><strong>Tipo:</strong> ${pokemon.types.map(type => type.type.name).join(', ')}</p>
-                <p><strong>Abilità:</strong> ${pokemon.abilities.map(ability => ability.ability.name).join(', ')}</p>
-                <p><strong>Altezza:</strong> ${pokemon.height / 10} m</p>
-                <p><strong>Peso:</strong> ${pokemon.weight / 10} kg</p>
+                <p><strong>Type:</strong> ${pokemon.types.map(type => type.type.name).join(', ')}</p>
+                <p><strong>Ability:</strong> ${pokemon.abilities.map(ability => ability.ability.name).join(', ')}</p>
+                <p><strong>Height:</strong> ${pokemon.height / 10} m</p>
+                <p><strong>Weight:</strong> ${pokemon.weight / 10} kg</p>
             </div>
         `;
     }
