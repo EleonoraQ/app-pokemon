@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
+    const refreshButton = document.getElementById('refresh-button'); // Bottone Refresh
     const toggleButton = document.getElementById('toggle-button');
     const pokemonInfo = document.getElementById('pokemon-info');
 
@@ -30,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
             searchButton.click();
         }
     });
+
+    // Listener per il bottone di refresh
+        refreshButton.addEventListener('click', () => {
+            resetSearch();
+        });
 
     // Funzione per fetchare i dati del Pokémon dalla PokeAPI
     async function fetchPokemonData(name) {
@@ -82,5 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
     }
+    // Funzione per resettare la ricerca
+        function resetSearch() {
+            searchInput.value = '';
+            pokemonInfo.innerHTML = '';
+            searchInput.focus();
+        }
 });
 
