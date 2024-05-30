@@ -1,7 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
+    const toggleButton = document.getElementById('toggle-button');
     const pokemonInfo = document.getElementById('pokemon-info');
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('night-mode');
+        toggleButton.classList.toggle('night-mode');
+        if (document.body.classList.contains('night-mode')) {
+            toggleButton.textContent = 'Day Mode';
+        } else {
+            toggleButton.textContent = 'Night Mode';
+        }
+    });
 
     searchButton.addEventListener('click', () => {
         const pokemonName = searchInput.value.toLowerCase().trim();

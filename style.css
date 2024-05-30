@@ -7,7 +7,7 @@ body {
     align-items: center;
     flex-direction: column;
     position: relative;
-    overflow: auto; /* Assicurati che il body sia scrollabile */
+    overflow: auto;
     height: 100%;
 }
 
@@ -18,15 +18,27 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: URL('IMGS/img1.jpg');
+    background: url('IMGS/img1.jpg');
     background-size: cover;
-    filter: blur(0px); /* Aumenta sfocatura */
+    filter: blur(0px);
     z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: -1;
+    transition: background-color 0.3s ease;
 }
 
 #app {
     text-align: center;
-    background-color: rgba(185, 190, 214, 0.918); /* Fondino semitrasparente color panna */
+    background-color: rgba(185, 190, 214, 0.918);
     padding: 15px;
     border-radius: 30px;
     z-index: 1;
@@ -54,28 +66,41 @@ body::before {
     background-color: #45a049;
 }
 
+#toggle-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+#toggle-button.night-mode {
+    background-color: #fff;
+    color: #333;
+}
+
 .pokemon-info {
     margin-top: 20px;
     color: #4B0082;
     font-size: 1.5em;
 }
 
-/* CSS per il titolo h1 "Pokemon App" */
 h1 {
-    color: #FFFFFF; /* Colore del testo */
-    background-color:#4B0082; /* Colore di sfondo rosso complementare */
-    font-size: 4em; /* Dimensione grande */
-    font-family: 'Roboto', sans-serif; /* Font personalizzato */
+    color: #FFFFFF;
+    background-color: #4B0082;
+    font-size: 4em;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    position: absolute; /* Per posizionamento preciso */
-    top: 20px; /* Coordinata Y, puoi aggiustarla in base alle tue necessità */
-    left: 20px; /* Coordinata X, puoi aggiustarla in base alle tue necessità */
-    border-radius: 20px; /* Arrotondamento degli angoli */
-    padding: 10px 20px; /* Spaziatura interna */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Opzionale: ombra per un effetto 3D */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Media query per dispositivi mobili */
 @media (max-width: 600px) {
     h1 {
         font-size: 2em;
@@ -84,12 +109,12 @@ h1 {
         padding: 5px 10px;
     }
 }
-/* Stile per h2 "Cerca il tuo Pokemon" */
+
 h2 {
-    color: #4B0082; /* Colore del testo viola */
-    font-size: 2em; /* Aumenta la dimensione del testo */
-    text-align: left; /* Allinea il testo a sinistra */
-    margin-left: 20px; /* Spaziatura a sinistra */
+    color: #4B0082;
+    font-size: 2em;
+    text-align: left;
+    margin-left: 20px;
 }
 
 .pokemon-card {
@@ -110,3 +135,37 @@ h2 {
 .pokemon-card h3 {
     margin: 10px 0 5px;
 }
+
+body.night-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.night-mode::after {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+body.night-mode #app {
+    background-color: rgba(50, 50, 50, 0.9);
+}
+
+body.night-mode #search-input {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.night-mode #search-button {
+    background-color: #555;
+    color: #fff;
+}
+
+body.night-mode h1 {
+    background-color: #333;
+    color: #bbb;
+}
+
+body.night-mode h2 {
+    color: #bbb;
+}
+
