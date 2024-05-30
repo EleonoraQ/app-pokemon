@@ -169,3 +169,24 @@ body.night-mode h2 {
     color: #bbb;
 }
 
+/* Aggiungi queste regole al tuo file style.css */
+.pokedex-descriptions {
+    margin-top: 20px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pokedex-descriptions h4 {
+    margin-top: 0;
+    color: #4B0082; /* Colore del testo viola */
+}
+
+.pokedex-descriptions p {
+    color: #333;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+
