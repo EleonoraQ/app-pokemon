@@ -56,7 +56,8 @@ body::before {
 
 .pokemon-info {
     margin-top: 20px;
-    color: #4B0082; 
+    color: #4B0082;
+    font-size: 1.5em;
 }
 
 /* CSS per il titolo h1 "Pokemon App" */
