@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descrizione Pokémon</title>
+    <title>Pokémon Description</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id="toggle-button">Night Mode</button>
     <div id="description-container">
-        <!-- La descrizione verrà inserita qui -->
+        <!-- The description will be inserted here -->
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -23,7 +24,16 @@
                 <p>${description}</p>
                 <a href="index.html">Go back</a>
             `;
+
+            const toggleButton = document.getElementById('toggle-button');
+
+            toggleButton.addEventListener('click', () => {
+                document.body.classList.toggle('night-mode');
+                toggleButton.classList.toggle('night-mode');
+                toggleButton.textContent = document.body.classList.contains('night-mode') ? 'Day Mode' : 'Night Mode';
+            });
         });
     </script>
 </body>
 </html>
+

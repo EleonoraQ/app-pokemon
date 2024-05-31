@@ -201,6 +201,7 @@ body.night-mode h2 {
     font-size: 18px;
     line-height: 1.6;
     margin-bottom: 20px;
+    text-align: justify;
 }
 
 #description-container a {
@@ -215,6 +216,18 @@ body.night-mode h2 {
 
 #description-container a:hover {
     background-color: #0056b3;
+}
+body.night-mode #description-container {
+    background-color: rgba(50, 50, 50, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.night-mode #description-container a {
+    background-color: #444;
+}
+
+body.night-mode #description-container a:hover {
+    background-color: #666;
 }
 
 
