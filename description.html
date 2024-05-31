@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descrizione Pokémon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="description-container">
+        <!-- La descrizione verrà inserita qui -->
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const description = params.get('description');
+            const name = params.get('name');
+
+            const descriptionContainer = document.getElementById('description-container');
+            descriptionContainer.innerHTML = `
+                <h2>${name.charAt(0).toUpperCase() + name.slice(1)}</h2>
+                <p>${description}</p>
+                <a href="index.html">Go back</a>
+            `;
+        });
+    </script>
+</body>
+</html>
