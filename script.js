@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             if (!response.ok) {
-                throw new Error('Pokémon non trovato');
+                throw new Error('Pokémon not found');
             }
             const pokemon = await response.json();
             const speciesResponse = await fetch(pokemon.species.url);
             if (!speciesResponse.ok) {
-                throw new Error('Informazioni sulla specie non trovate');
+                throw new Error('Species information not found');
             }
             const species = await speciesResponse.json();
             displayPokemonInfo(pokemon, species);
@@ -50,7 +50,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const stats = pokemon.stats.map(stat => `<p><strong>${stat.stat.name.toUpperCase()}:</strong> ${stat.base_stat}</p>`).join('');
         const types = pokemon.types.map(type => type.type.name).join(', ');
         const abilities = pokemon.abilities.map(ability => ability.ability.name).join(', ');
-        const descriptions = species.flavor_text_entries.filter(entry => entry.language.name === 'en').map(entry => entry.flavor_text).join(' ');
+
+        // Filtra le descrizioni duplicate e limita il numero di righe a 6
+        const uniqueDescriptions = [];
+        const descriptions = species.flavor_text_entries
+            .filter(entry => entry.language.name === 'en')
+            .map(entry => entry.flavor_text.replace(/\s+/g, ' ').trim())
+            .filter(description => {
+                if (uniqueDescriptions.includes(description)) {
+                    return false;
+                } else {
+                    uniqueDescriptions.push(description);
+                    return true;
+                }
+            });
+
+        // Limita le descrizioni a 6 righe
+        let limitedDescriptions = '';
+        let lineCount = 0;
+        for (const description of descriptions) {
+            const lines = description.split('.').map(line => line.trim()).filter(line => line.length > 0);
+            for (const line of lines) {
+                if (lineCount + Math.ceil(line.length / 80) <= 6) { // Assuming ~80 characters per line
+                    limitedDescriptions += (limitedDescriptions ? '. ' : '') + line;
+                    lineCount += Math.ceil(line.length / 80);
+                } else {
+                    break;
+                }
+            }
+            if (lineCount >= 6) {
+                break;
+            }
+        }
+        limitedDescriptions += '.';
 
         pokemonInfo.innerHTML = `
             <div class="pokemon-card">
@@ -65,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="pokedex-descriptions">
                 <h4>Pokédex Descriptions:</h4>
-                <a href="description.html?name=${encodeURIComponent(pokemon.name)}&description=${encodeURIComponent(descriptions)}">Read the description</a>
+                <a href="description.html?name=${encodeURIComponent(pokemon.name)}&description=${encodeURIComponent(limitedDescriptions)}">Read the description</a>
             </div>
         `;
     }
@@ -76,6 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.focus();
     }
 });
+
+
+
+
 
 
 
