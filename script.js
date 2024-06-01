@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const uniqueDescriptions = [];
         const descriptions = species.flavor_text_entries
             .filter(entry => entry.language.name === 'en')
-            .map(entry => entry.flavor_text.replace(/\s+/g, ' ').trim())
+            .map(entry => entry.flavor_text.replace(/\s+/g, ' ').trim().toLowerCase())
             .filter(description => {
                 if (uniqueDescriptions.includes(description)) {
                     return false;
@@ -71,9 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const description of descriptions) {
             const lines = description.split('.').map(line => line.trim()).filter(line => line.length > 0);
             for (const line of lines) {
-                if (lineCount + Math.ceil(line.length / 80) <= 6) { // Assuming ~80 characters per line
-                    limitedDescriptions += (limitedDescriptions ? '. ' : '') + line;
-                    lineCount += Math.ceil(line.length / 80);
+                const capitalizedLine = line.charAt(0).toUpperCase() + line.slice(1); // Capitalize the first letter
+                if (lineCount + Math.ceil(capitalizedLine.length / 80) <= 6) { // Assuming ~80 characters per line
+                    limitedDescriptions += (limitedDescriptions ? '. ' : '') + capitalizedLine;
+                    lineCount += Math.ceil(capitalizedLine.length / 80);
                 } else {
                     break;
                 }
@@ -108,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.focus();
     }
 });
+
 
 
 
