@@ -179,7 +179,7 @@ body.night-mode h2 {
 
 
 #description-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Sfondo bianco con trasparenza */
+    background-color: rgba(255, 255, 255, 0.8); /* Sfondo bianco-trasparente*/
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
